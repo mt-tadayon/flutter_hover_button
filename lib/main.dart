@@ -42,7 +42,7 @@ class _ButtonState extends State<Button> {
     return Scaffold(
         backgroundColor: ButtonColors.backgroundColor,
         body: Center(
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               FillHorizontal(
