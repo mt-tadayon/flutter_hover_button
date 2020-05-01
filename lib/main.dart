@@ -1,6 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+class ButtonColors {
+  static get backgroundColor => const Color(0xFFECF0F1);
+  static get defaultColor => const Color(0xFFC3C4C4);
+  static get emerald => const Color(0xFF2ecc71);
+  static get peterRiver => const Color(0xFF3498db);
+  static get amethyst => const Color(0xFF9b59b6);
+  static get wetAsphalt => const Color(0xFF34495e);
+  static get carrot => const Color(0xFFe67e22);
+  static get alizarin => const Color(0xFFe74c3c);
+}
+
 void main() {
   runApp(MyApp());
 }
@@ -29,7 +40,7 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFFECF0F1),
+        backgroundColor: ButtonColors.backgroundColor,
         body: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -37,15 +48,39 @@ class _ButtonState extends State<Button> {
               FillHorizontal(
                 width: 120,
                 height: 40.0,
-                color: Color(0xFFC3C4C4),
+                animationColor: ButtonColors.peterRiver,
                 text: 'Peter River',
               ),
               FillHorizontal(
                 width: 120,
                 height: 40,
-                color: Color(0xFF2ecc71),
+                animationColor: ButtonColors.emerald,
                 text: 'Emerald',
-              )
+              ),
+              FillHorizontal(
+                width: 120,
+                height: 40,
+                text: 'Amythyst',
+                animationColor: ButtonColors.amethyst,
+              ),
+              FillHorizontal(
+                width: 120,
+                height: 40,
+                text: 'Wet Asphale',
+                animationColor: ButtonColors.wetAsphalt,
+              ),
+              FillHorizontal(
+                width: 120,
+                height: 40,
+                text: 'Carrot',
+                animationColor: ButtonColors.carrot,
+              ),
+              FillHorizontal(
+                width: 120,
+                height: 40,
+                text: 'Alizarin',
+                animationColor: ButtonColors.alizarin,
+              ),
             ],
           ),
         ));
@@ -56,9 +91,9 @@ class FillHorizontal extends StatefulWidget {
   final double width;
   final double height;
   final String text;
-  final Color color;
+  final Color animationColor;
 
-  FillHorizontal({this.width, this.height, this.text, this.color});
+  FillHorizontal({this.width, this.height, this.text, this.animationColor});
 
   @override
   _FillHorizontalState createState() => _FillHorizontalState();
@@ -75,8 +110,8 @@ class _FillHorizontalState extends State<FillHorizontal>
   @override
   void initState() {
     super.initState();
-    textColor = Color(0xFFC3C4C4);
-    borderColor = widget.color;
+    textColor = ButtonColors.defaultColor;
+    borderColor = ButtonColors.defaultColor;
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _animation = Tween(begin: 0.0, end: 500.0).animate(CurvedAnimation(
@@ -86,7 +121,7 @@ class _FillHorizontalState extends State<FillHorizontal>
       ..addListener(() {
         setState(() {});
       });
-    _borderAnimation = ColorTween(begin: widget.color, end: Color(0xFF3498db))
+    _borderAnimation = ColorTween(begin: ButtonColors.defaultColor, end: widget.animationColor)
         .animate(CurvedAnimation(curve: Curves.easeOutCirc, parent: _controller));
   }
 
@@ -111,13 +146,13 @@ class _FillHorizontalState extends State<FillHorizontal>
                 _controller.forward();
                 setState(() {
                   textColor = Colors.white;
-                  borderColor = Color(0xFF3498db);
+                  borderColor = widget.animationColor;
                 });
               } else {
                 _controller.reverse();
                 setState(() {
-                  textColor = widget.color;
-                  borderColor = widget.color;
+                  textColor = ButtonColors.defaultColor;
+                  borderColor = ButtonColors.defaultColor;
                 });
               }
             },
@@ -128,7 +163,7 @@ class _FillHorizontalState extends State<FillHorizontal>
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFF3498db),
+                          color: widget.animationColor,
                           borderRadius: BorderRadius.circular(5.0)),
                       width: _animation.value,
                     ),
