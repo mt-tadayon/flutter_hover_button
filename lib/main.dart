@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 
 class ButtonColors {
   static get backgroundColor => const Color(0xFFECF0F1);
+
   static get defaultColor => const Color(0xFFC3C4C4);
+
   static get emerald => const Color(0xFF2ecc71);
+
   static get peterRiver => const Color(0xFF3498db);
+
   static get amethyst => const Color(0xFF9b59b6);
+
   static get wetAsphalt => const Color(0xFF34495e);
+
   static get carrot => const Color(0xFFe67e22);
+
   static get alizarin => const Color(0xFFe74c3c);
 }
 
@@ -41,6 +48,20 @@ class _ButtonState extends State<Button> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ButtonColors.backgroundColor,
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Fill Horizontal'),
+          backgroundColor: Color(0xFF5C92A6),
+        ),
+        floatingActionButton: Container(
+          height: 50,
+          width: 50,
+          child: FloatingActionButton(
+            backgroundColor: Color(0xFF5C92A6),
+            child: Icon(Icons.open_in_new),
+            onPressed: () {},
+          ),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -121,8 +142,10 @@ class _FillHorizontalState extends State<FillHorizontal>
       ..addListener(() {
         setState(() {});
       });
-    _borderAnimation = ColorTween(begin: ButtonColors.defaultColor, end: widget.animationColor)
-        .animate(CurvedAnimation(curve: Curves.easeOutCirc, parent: _controller));
+    _borderAnimation = ColorTween(
+            begin: ButtonColors.defaultColor, end: widget.animationColor)
+        .animate(
+            CurvedAnimation(curve: Curves.easeOutCirc, parent: _controller));
   }
 
   @override
@@ -177,7 +200,7 @@ class _FillHorizontalState extends State<FillHorizontal>
                       child: Text(widget.text),
                       curve: Curves.easeIn,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
