@@ -31,11 +31,22 @@ class _ButtonState extends State<Button> {
     return Scaffold(
         backgroundColor: Color(0xFFECF0F1),
         body: Center(
-          child: FillHorizontal(
-            width: 120,
-            height: 40.0,
-            color: Color(0xFFC3C4C4),
-            text: 'Peter River',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              FillHorizontal(
+                width: 120,
+                height: 40.0,
+                color: Color(0xFFC3C4C4),
+                text: 'Peter River',
+              ),
+              FillHorizontal(
+                width: 120,
+                height: 40,
+                color: Color(0xFF2ecc71),
+                text: 'Emerald',
+              )
+            ],
           ),
         ));
   }
@@ -59,6 +70,7 @@ class _FillHorizontalState extends State<FillHorizontal>
   Color borderColor;
   AnimationController _controller;
   Animation _animation;
+  Animation _borderAnimation;
 
   @override
   void initState() {
@@ -72,10 +84,10 @@ class _FillHorizontalState extends State<FillHorizontal>
       parent: _controller,
     ))
       ..addListener(() {
-        setState(() {
-
-        });
+        setState(() {});
       });
+    _borderAnimation = ColorTween(begin: widget.color, end: Color(0xFF3498db))
+        .animate(CurvedAnimation(curve: Curves.easeOutCirc, parent: _controller));
   }
 
   @override
@@ -83,14 +95,13 @@ class _FillHorizontalState extends State<FillHorizontal>
     return Container(
         height: widget.height,
         width: widget.width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(
-            color: borderColor,
-            width: 2,
-          ),
-        ),
         child: Material(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              side: BorderSide(
+                color: _borderAnimation.value,
+                width: 2,
+              )),
           child: InkWell(
             onTap: () {
               print('test');
@@ -118,7 +129,7 @@ class _FillHorizontalState extends State<FillHorizontal>
                     child: Container(
                       decoration: BoxDecoration(
                           color: Color(0xFF3498db),
-                      ),
+                          borderRadius: BorderRadius.circular(5.0)),
                       width: _animation.value,
                     ),
                   ),
