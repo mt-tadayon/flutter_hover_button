@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -134,7 +135,7 @@ class _FillHorizontalState extends State<FillHorizontal>
     textColor = ButtonColors.defaultColor;
     borderColor = ButtonColors.defaultColor;
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
     _animation = Tween(begin: 0.0, end: 500.0).animate(CurvedAnimation(
       curve: Curves.easeIn,
       parent: _controller,

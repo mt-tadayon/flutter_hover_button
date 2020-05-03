@@ -1,6 +1,9 @@
-# flutterchallengehover
+# flutter_challenge_hover
 
-A new Flutter application.
+Reusable button with hover animation
+- [The live version is in my Flutter CodePen](https://codepen.io/mt-tadayon/pen/bGVpjzg)
+- [The original CodePen is from Chris Deacy, which is created with HTML, CSS and JS](https://codepen.io/chrisdothtml/pen/waKBdM)
+
 
 ## Getting Started
 
