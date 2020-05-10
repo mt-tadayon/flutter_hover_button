@@ -1,4 +1,4 @@
-# flutter_challenge_hover
+# flutter_button_hover
 
 Reusable button with hover animation
 - [The live version is in my Flutter CodePen](https://codepen.io/mt-tadayon/pen/bGVpjzg)
